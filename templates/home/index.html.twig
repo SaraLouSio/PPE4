@@ -1,0 +1,12 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+    <h1> Exemple d'utilisation de la la sécurité</h1>
+    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+        <p> Username : {{app.user.username}}</p>
+    {%else%}
+        <p>vous n'êtes pas authentifié.</p>
+    {%endif%}
+    </div>
+{% endblock %}
