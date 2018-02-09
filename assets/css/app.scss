@@ -9,3 +9,101 @@ and open the template in the editor.
 */
 
 @import '~bootstrap/scss/bootstrap';
+
+html, body {
+    height : 100%
+}
+footer{
+    background: url('http://eskipaper.com/images/dark-background-8.jpg');
+    color : white;
+    width: 100%;
+    background-size: cover;
+    height : 100px;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.linear-gradient-blue {
+    background: linear-gradient(to bottom left, #dddfee 0%, #bcc6e7 100%);
+}
+
+.background-uni-blue{
+    background-color: #bcc6e7
+}
+.linear-gradient-brown{
+    background: linear-gradient(to bottom left, #9a7b60 0%, #685241 100%);  
+}
+.background-uni-grey{
+    background-color: #dddfee
+}
+.background-body-brown{
+    background: url('http://www.psdgraphics.com/file/brown-grunge-background.jpg')no-repeat center center;
+    width: 100%;
+    background-size: cover;
+}
+.background-image-brown{
+    background: url('http://www.gsfdcy.com/data/img/13/1257397-brown-wallpaper.jpg')no-repeat center center;
+    width: 100%;
+    background-size: cover;
+}
+.background-planches-brown{
+    background: url('http://jeffballardcontracting.com/wp-content/uploads/background-dark-brown-wood.png')no-repeat center center;
+    width: 100%;
+    background-size: cover;
+}
+.background-fond-brown{
+    background: url('https://hdwallsource.com/img/2014/4/brown-background-18639-19111-hd-wallpapers.jpg')no-repeat center center;
+    width: 100%;
+    background-size: cover;
+}
+.background-test {
+    background: transparent url('https://images2.alphacoders.com/261/26102.jpg') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    min-height:500px;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+
+.border-custom{
+    border: double orange 20px;
+    //border-image-source: url('http://images.clipartpanda.com/simple-border-clipart-jRiGAaxcL.png') 30 round;
+    border-width: 40px 40px 40px 40px;
+    border-image: url("http://images.clipartpanda.com/simple-border-clipart-jRiGAaxcL.png") ;
+    border-image-slice: 800;
+}
+.border-custom-little{
+    border: double orange 20px;
+    border-width: 40px 40px 40px 40px;
+    border-image: url("https://openclipart.org/image/2400px/svg_to_png/189258/ornateeyeballframe.png") repeat;
+    border-image-slice: 685;
+}
+
+.btn-transparent{
+    cursor: default;
+}
+
+.btn-transparent:hover{
+    background-color: hsla(27, 0%, 82%, 0.1);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.font-fam-courrier{
+    font-family: 'Courier New', Courier, monospace;
+    color: #ad8c71;
+}
+
+.font-fam-brush{
+    font-family: Brush Script MT, Brush Script Std, cursive
+}
+
+
+
+
+.margin-20{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
