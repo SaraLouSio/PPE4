@@ -4,21 +4,15 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{asset("build/css/app.css")}}" />
-        <style>
-            body{
-                background-color: #f0f0ff
-            }
-        </style>
+        <script defer src="/static/fontawesome/fontawesome-all.js"></script>
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ path('home') }}">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -27,20 +21,27 @@
                           <li class="nav-item">#}
                     <a class="nav-link" href="{{ path('admin') }}">Admin</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Compte
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('login') }}">Login</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Compte
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
+                        </div>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link disabled' >Welcome {{app.user.username}}</a>
+                    </li>
+                {%else%}
+                       
+                <li><a class="nav-link" href="{{ path('login') }}">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                {%endif%}
+          
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,18 +49,8 @@
             </form>
         </div>
     </nav>
+               
 
-    {#<ul class="nav" style="background-color: #dce2fb;">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{ path('home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('login') }}">login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin') }}">Admin</a>
-        </li>
-    </ul>#}
 
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
@@ -67,4 +58,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 </body>
+{#<footer>
+    <div class="text-center">
+        <p>Contact : sara.louafi.66@gmail.com</p>
+        <p>Copyright @ 2018</p>
+    </div>
+</footer>#}
 </html>

@@ -10,17 +10,27 @@ and open the template in the editor.
 
 @import '~bootstrap/scss/bootstrap';
 
-html, body {
+html{
     height : 100%
+}
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
 footer{
     background: url('http://eskipaper.com/images/dark-background-8.jpg');
     color : white;
-    width: 100%;
-    background-size: cover;
-    height : 100px;
-    background-attachment: fixed;
-    overflow: hidden;
+    //position:absolute;
+   // bottom:0;
+    width:100%;
+    padding-top:50px;
+    height:50px;
+    // width: 100%;
+    // background-size: cover;
+    // height : 100px;
+    // background-attachment: fixed;
+    // overflow: hidden;
 }
 
 .linear-gradient-blue {
@@ -48,19 +58,29 @@ footer{
 }
 .background-planches-brown{
     background: url('http://jeffballardcontracting.com/wp-content/uploads/background-dark-brown-wood.png')no-repeat center center;
+    -moz-background-size:100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
     width: 100%;
     background-size: cover;
+    //height : 100%;
+    position: fixed; 
+
+    // left: 0px; 
+    // top: 0px; 
 }
+
 .background-fond-brown{
     background: url('https://hdwallsource.com/img/2014/4/brown-background-18639-19111-hd-wallpapers.jpg')no-repeat center center;
     width: 100%;
     background-size: cover;
 }
-.background-test {
+.background-books {
     background: transparent url('https://images2.alphacoders.com/261/26102.jpg') no-repeat center center;
     background-size: cover;
     overflow: hidden;
-    min-height:500px;
+    min-height:400px;
     width: 100%;
     background-attachment: fixed;
 }
@@ -97,9 +117,6 @@ footer{
 .font-fam-brush{
     font-family: Brush Script MT, Brush Script Std, cursive
 }
-
-
-
 
 .margin-20{
     margin-top: 20px;

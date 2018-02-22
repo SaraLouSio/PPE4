@@ -1,12 +1,56 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container">
-    <h1> Exemple d'utilisation de la la sécurité</h1>
-    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-        <p> Username : {{app.user.username}}</p>
-    {%else%}
-        <p>vous n'êtes pas authentifié.</p>
-    {%endif%}
+
+    {# <div class="jumbotron jumbotron-fluid">
+         <div class="container">
+             <h1 class="display-4">MediaStore</h1>
+             <p class="lead">ajouter image ici</p>
+         </div>
+     </div>  #} 
+    <section class='background-books'>
+
+        <div class="container"  >
+            <h1 class="center text-center font-fam-brush" style="margin-top: 100px;font-size: 150px;color: #ad8c71"><i>Book Store</i></h1>
+
+        </div>
+    </section>
+    {#<div class="separator-test"></div>#}
+    <section  class='background-planches-brown' >
+    <div class="container-fluid" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="container border-custom-little font-fam-courrier">
+                    <div class='row'>
+                        <div class="margin-20">
+                            <h3>Test</h3>
+                            <a class="btn-transparent">Test</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8 offset-1">
+                <div class="container-fluid rounded background-fond-brown font-fam-courrier" >
+                    <div class="margin-20">
+                        <h1 class="title" >Accueil</h1>
+                        <hr>
+
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="http://manutentionquebec.com/wp-content/themes/manutentionquebe/images/aucune-image.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
+    </section>
+  
+
 {% endblock %}
