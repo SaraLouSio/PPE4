@@ -19,14 +19,14 @@ class Commandes
     // add your own fields
     
     /**
-     * @OneToMany(targetEntity="Produits")
-     * @JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * @ORM\OneToMany(targetEntity="Produits" , mappedBy="Commandes")
+     * @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
      */
     private $idProduit;
     
     /**
-     * @OneToMany(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\OneToMany(targetEntity="User" , mappedBy="Commandes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      */
     private $idUser;
 }

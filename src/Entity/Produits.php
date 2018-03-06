@@ -17,12 +17,12 @@ class Produits
     private $id;
 
      /**
-     * @ORM\Column(name="pro_nom", type="string" length=255, nullable=false)
+     * @ORM\Column(name="pro_nom", type="string", length=255, nullable=false)
      */
      private $nom;
      
       /**
-     * @ORM\Column(name="pro_prix", type="integer" nullable=false)
+     * @ORM\Column(name="pro_prix", type="integer", nullable=false)
      */
      private $prix;
      
@@ -46,9 +46,4 @@ class Produits
      */
      private $categorie;
      
-     
-      /**
-     * @ORM\Column(name="sou_cat_id", type="integer" nullable=false options={"default" : 1})
-     */
-     private $sousCategorie;
 }

@@ -11,26 +11,26 @@ and open the template in the editor.
 @import '~bootstrap/scss/bootstrap';
 
 html{
-    height : 100%
+    height : 100%;
 }
 body {
-    min-height: 100%;
+    //height : 100%;
     margin: 0;
     padding: 0;
+   
 }
 footer{
     background: url('http://eskipaper.com/images/dark-background-8.jpg');
     color : white;
     //position:absolute;
-   // bottom:0;
+    bottom:0;
     width:100%;
-    padding-top:50px;
-    height:50px;
-    // width: 100%;
-    // background-size: cover;
-    // height : 100px;
-    // background-attachment: fixed;
-    // overflow: hidden;
+    //padding-top:50px;
+    // height:50px;
+    //background-size: cover;
+    height : 100%;
+    //background-attachment: fixed;
+    //overflow: hidden;
 }
 
 .linear-gradient-blue {
@@ -65,7 +65,7 @@ footer{
     width: 100%;
     background-size: cover;
     //height : 100%;
-    position: fixed; 
+    //position: fixed; 
 
     // left: 0px; 
     // top: 0px; 

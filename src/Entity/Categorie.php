@@ -12,10 +12,14 @@ class Categorie
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="cat_id" type="integer")
+     * @ORM\Column(name="cat_id", type="integer")
      */
     private $id;
 
-    // add your own fields
+     /**
+     * @ORM\Column(name="cat_libelle", type="string", length=255, nullable=false)
+     */
+     private $libelle;
+     
     
 }

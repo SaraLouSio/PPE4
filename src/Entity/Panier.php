@@ -23,14 +23,14 @@ class Panier {
     private $quantite;
     
     /**
-     * @OneToMany(targetEntity="Produits")
-     * @JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * @ORM\OneToMany(targetEntity="Produits", mappedBy="Panier")
+     * @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
      */
     private $idProduit;
     
     /**
-     * @OneToMany(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="Panier")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      */
     private $idUser;
 
