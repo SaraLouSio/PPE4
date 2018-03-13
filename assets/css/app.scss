@@ -47,23 +47,20 @@ footer{
     background-color: #dddfee
 }
 .background-body-brown{
-    background: url('http://www.psdgraphics.com/file/brown-grunge-background.jpg')no-repeat center center;
-    width: 100%;
-    background-size: cover;
-}
-.background-image-brown{
-    background: url('http://www.gsfdcy.com/data/img/13/1257397-brown-wallpaper.jpg')no-repeat center center;
+    background: url('../../public/images/brown-grunge-background.jpg')no-repeat center center;
     width: 100%;
     background-size: cover;
 }
 .background-planches-brown{
-    background: url('http://jeffballardcontracting.com/wp-content/uploads/background-dark-brown-wood.png')no-repeat center center;
+    
+    background: url('../../public/images/brown-wood.png')no-repeat center center;
     -moz-background-size:100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
     width: 100%;
     background-size: cover;
+    color: #ad8c71;
     //height : 100%;
     //position: fixed; 
 
@@ -72,12 +69,12 @@ footer{
 }
 
 .background-fond-brown{
-    background: url('https://hdwallsource.com/img/2014/4/brown-background-18639-19111-hd-wallpapers.jpg')no-repeat center center;
+    background: url('../../public/images/brown-background.jpg')no-repeat center center;
     width: 100%;
     background-size: cover;
 }
 .background-books {
-    background: transparent url('https://images2.alphacoders.com/261/26102.jpg') no-repeat center center;
+    background: transparent url('../../public/images/library.jpg') no-repeat center center;
     background-size: cover;
     overflow: hidden;
     min-height:400px;
@@ -96,7 +93,8 @@ footer{
 .border-custom-little{
     border: double orange 20px;
     border-width: 40px 40px 40px 40px;
-    border-image: url("https://openclipart.org/image/2400px/svg_to_png/189258/ornateeyeballframe.png") repeat;
+    //border-image: url("https://openclipart.org/image/2400px/svg_to_png/189258/ornateeyeballframe.png") repeat;
+    border-image: url('../../public/images/border.png') repeat;
     border-image-slice: 685;
 }
 
