@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
 use App\Entity\Panier;
+use Doctrine\ORM\EntityManagerInterface;
 /**
  * Description of PanierController
  *
@@ -44,10 +45,10 @@ class PanierController extends AbstractController {
     }
     
      /**
-     * @route("/ajoutPanier{id}",name="panier")
+     * @route("/ajoutPanier{id}",name="ajoutPanier")
      * @return Response
      */
-     public function ajoutPanierController($id) {
+     public function ajoutPanierController($id, EntityManagerInterface $em) {
         
          $panier = $this->getDoctrine()
                 ->getRepository(Panier::class)
@@ -55,12 +56,19 @@ class PanierController extends AbstractController {
                     'userId' => $this->getUser()->getUsername(),
                     'proId' => $id
                 ]);
-         if(!panier){
+                
+         if(!$panier){
              //ajout du nouveau produit
+            $nouveauPanier = new Panier;
+            $nouveauPanier->setProId($id);
+            $nouveauPanier->setUserId($this->getUser()->getUsername());
+            $nouveauPanier->setPanQuantite(1);
+            $em->persist($nouveauPanier);
+            $em->flush();
          } else {
              //incrementer
          }
-
+var_dump($panier);die;
         
         return $this->redirect($this->generateUrl('panier'));
     }

@@ -14,7 +14,8 @@
             <h3>{{produit.getProPrix}} € </h3>
             <h4>{{produit.getProResume}}</h4>
             <br>
-            <a class="btn btn-outline-dark"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
+            <a class="btn btn-dark" href="{{ path('ajoutPanier', { 'id': produit.getProId }) }}" >
+                <i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
             <a class="btn btn-outline-danger"><i class="fas fa-heart"></i> Ajouter aux favoris</a>
         </div>
         </div>

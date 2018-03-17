@@ -119,7 +119,7 @@ class Produits {
         $this->proImage = $proImage;
     }
 
-    function setCatId(Categorie $catId) {
+    function setCatId($catId) {
         $this->catId = $catId;
     }
 

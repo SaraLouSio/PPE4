@@ -46,11 +46,11 @@ class Panier {
         return $this->panQuantite;
     }
 
-    function setProId(Produits $proId) {
+    function setProId($proId) {
         $this->proId = $proId;
     }
 
-    function setUserId(User $userId) {
+    function setUserId($userId) {
         $this->userId = $userId;
     }
 

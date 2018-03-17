@@ -1,0 +1,30 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container-fluid" style="margin-top: 50px;" >
+        <div class="row">
+            {% if panier %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pan in panier %}
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td>@</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
