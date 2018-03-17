@@ -16,9 +16,9 @@
     </div>
     {#<div class="separator-test"></div>#}
     <div>
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-top: 50px;">
             <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="container border-custom-little font-fam-courrier">
                         <div class='row'>
                             <div>
@@ -34,16 +34,20 @@
                         <div >
                             <h1 class="title" >Accueil</h1>
                             <hr>
+                            <div class="container-fluid">
 
-                            {% for produit in produits %}
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                                <img class="card-img-top" src="{{produit.getProImage}}" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text">{{produit.getProNom}}</p>
-                                    <a href="#" class="btn btn-secondary">Go somewhere</a>
-                                </div>
-                            </div>
+                                {% for produit in produits %}
+                                    <div class="col-sm-4">
+                                        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                                            <img class="card-img-top" src="{{produit.getProImage}}" alt="Card image cap">
+                                            <div class="card-body">
+                                                <p class="card-text">{{produit.getProNom}}</p>
+                                                <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-secondary">Go somewhere</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {%endfor%}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,4 +56,12 @@
     </div>
 
 
+{% endblock %}
+{%block footer %}
+    <footer>
+        <div class="text-center">
+            <p>Contact : sara.louafi.66@gmail.com</p>
+            <p>Copyright @ 2018</p>
+        </div>
+    </footer>
 {% endblock %}
