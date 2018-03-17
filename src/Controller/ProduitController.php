@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
+use App\Entity\User;
 /**
  * Description of ProduitController
  *
@@ -25,7 +26,7 @@ class ProduitController extends AbstractController {
      * @route("/produit/{id}",name="produit")
      * @return Response
      */
-    public function indexController($id) {
+    public function produitController($id) {
         
          $produit = $this->getDoctrine()
                 ->getRepository(Produits::class)
@@ -37,7 +38,7 @@ class ProduitController extends AbstractController {
                     'Aucun produits'
             );
         }
-        
+
         return $this->render('home/produit.html.twig', array('produit' => $produit[0]));
     }
     

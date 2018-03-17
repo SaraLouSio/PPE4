@@ -43,6 +43,11 @@ class Produits {
     private $proImage;
 
     /**
+     * @ORM\Column(name="pro_Resume", type="string", length=1500, nullable=false)
+     */
+    private $proResume;
+
+    /**
      * @var Categorie
      *
      * @ORM\ManyToOne(targetEntity="Categorie")
@@ -85,6 +90,10 @@ class Produits {
     function getCatId(): Categorie {
         return $this->catId;
     }
+    
+    function getProResume() {
+        return $this->proResume;
+    }
 
     function setProId($proId) {
         $this->proId = $proId;
@@ -113,5 +122,10 @@ class Produits {
     function setCatId(Categorie $catId) {
         $this->catId = $catId;
     }
+
+    function setProResume($proResume) {
+        $this->$proResume = $proResume;
+    }
+
 
 }

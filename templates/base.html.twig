@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{asset("build/css/app.css")}}" />
         <script defer src="/static/fontawesome/fontawesome-all.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     {% block stylesheets %}{% endblock %}
 </head>
 <body class='background-planches-brown'>
@@ -27,8 +28,9 @@
                             Compte
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#"> <i class="fas fa-shopping-cart"></i> Panier</a>
+                            <a class="dropdown-item" href="#">Commandes</a>
+                            <a class="dropdown-item" href="#"> <i class="fas fa-heart"></i> Favoris</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
                         </div>
@@ -37,11 +39,11 @@
                         <a class='nav-link disabled' >Welcome {{app.user.username}}</a>
                     </li>
                 {%else%}
-                       
-                <li><a class="nav-link" href="{{ path('login') }}">Login</a>
-                </li>
+
+                    <li><a class="nav-link" href="{{ path('login') }}">Login</a>
+                    </li>
                 {%endif%}
-          
+
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -49,7 +51,7 @@
             </form>
         </div>
     </nav>
-               
+
 
 
 {% block body %}{% endblock %}

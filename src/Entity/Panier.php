@@ -9,22 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Panier {
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(name="pan_id", type="integer")
-     */
-    private $PanId;
-    // add your own fields
-    
-     /**
-     * @ORM\Column(name="pan_quantite", type="integer")
-     */
-    private $panQuantite;
-    
      /**
      * @var Produits
-     *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Produits")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
@@ -34,45 +21,42 @@ class Panier {
     
     /**
      * @var User
-     *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_name")
      * })
      */
     private $userId;
-    function getPanId() {
-        return $this->PanId;
+    
+     /**
+     * @ORM\Column(name="pan_quantite", type="integer")
+     */
+    private $panQuantite;
+    
+    function getProId(): Produits {
+        return $this->proId;
+    }
+
+    function getUserId(): User {
+        return $this->userId;
     }
 
     function getPanQuantite() {
         return $this->panQuantite;
     }
 
-    function getProId(): \Produits {
-        return $this->proId;
+    function setProId(Produits $proId) {
+        $this->proId = $proId;
     }
 
-    function getUserId(): \User {
-        return $this->userId;
-    }
-
-    function setPanId($PanId) {
-        $this->PanId = $PanId;
+    function setUserId(User $userId) {
+        $this->userId = $userId;
     }
 
     function setPanQuantite($panQuantite) {
         $this->panQuantite = $panQuantite;
     }
-
-    function setProId(\Produits $proId) {
-        $this->proId = $proId;
-    }
-
-    function setUserId(\User $userId) {
-        $this->userId = $userId;
-    }
-
 
 
 }

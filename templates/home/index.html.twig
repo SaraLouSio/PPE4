@@ -16,9 +16,9 @@
     </div>
     {#<div class="separator-test"></div>#}
     <div>
-        <div class="container-fluid" style="margin-top: 50px;">
+        <div class="container-fluid" >
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3" style="margin-top: 75px;">
                     <div class="container border-custom-little font-fam-courrier">
                         <div class='row'>
                             <div>
@@ -29,17 +29,17 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8 offset-1">
+                <div class="col-sm-8 offset-1" style="margin-top: 50px;">
                     <div class="container-fluid rounded  font-fam-courrier" >
-                        <div >
-                            <h1 class="title" >Accueil</h1>
-                            <hr>
-                            <div class="container-fluid">
 
+                        <h1 class="title" >Accueil</h1>
+                        <hr>
+                        <div class="container-fluid">
+                            <div class="row">
                                 {% for produit in produits %}
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                                            <img class="card-img-top" src="{{produit.getProImage}}" alt="Card image cap">
+                                            <img class="card-img-top" height="250"  src="{{produit.getProImage}}" alt="Card image cap">
                                             <div class="card-body">
                                                 <p class="card-text">{{produit.getProNom}}</p>
                                                 <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-secondary">Go somewhere</a>
@@ -58,7 +58,7 @@
 
 {% endblock %}
 {%block footer %}
-    <footer>
+    <footer style="margin-top: 100px;">
         <div class="text-center">
             <p>Contact : sara.louafi.66@gmail.com</p>
             <p>Copyright @ 2018</p>

@@ -1,5 +1,23 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
 {% block body %}
-    <p>PAGE PRODUIT : {{produit.getProNom}}</p>
-    {%endblock%}
+
+    
+    <div class="container-fluid" style="margin-top: 50px;" >
+        <div class="row">
+        <div class="col-sm-4 offset-1">
+            <img class="card-img-top" height="500" width="200"  src="{{produit.getProImage}}" alt="Card image cap">
+        </div>
+        <div class="col-sm-4 offset-1">
+            <h1>{{produit.getProNom}}</h1>
+            <br>
+            <h3>{{produit.getProPrix}} € </h3>
+            <h4>{{produit.getProResume}}</h4>
+            <br>
+            <a class="btn btn-outline-dark"><i class="fas fa-shopping-cart"></i> Ajouter au panier</a>
+            <a class="btn btn-outline-danger"><i class="fas fa-heart"></i> Ajouter aux favoris</a>
+        </div>
+        </div>
+    </div>
+
+{%endblock%}
