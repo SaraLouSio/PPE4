@@ -1,29 +1,32 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Description of Contenu
- *
- * @author windows
+ * @ORM\Entity(repositoryClass="App\Repository\ContenuRepository")
  */
 class Contenu {
-      
-    /**
-     * @OneToMany(targetEntity="Commandes")
-     * @JoinColumn(name="com_id", referencedColumnName="com_id")
+
+     /**
+     * @var Commandes
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Commandes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="com_id", referencedColumnName="com_id")
+     * })
      */
     private $idCommande;
     
-   /**
-     * @OneToMany(targetEntity="Produits")
-     * @JoinColumn(name="pro_id", referencedColumnName="pro_id")
+    /**
+     * @var Produits
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Produits")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * })
      */
     private $idProduit;
     

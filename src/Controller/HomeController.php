@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Produits;
 
 //TODO : finir entity -> pages produit -> panier
 /*
@@ -26,7 +27,17 @@ class HomeController extends AbstractController {
      * @return Response
      */
     public function indexController() {
-        return $this->render('home/index.html.twig');
+        
+         $produits = $this->getDoctrine()
+                ->getRepository(Produits::class)
+                ->findAll();
+        if (!$produits) {
+            throw $this->createNotFoundException(
+                    'Aucun produits'
+            );
+        }
+        
+        return $this->render('home/index.html.twig', array('produits' => $produits));
     }
     
     /**

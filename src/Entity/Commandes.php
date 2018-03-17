@@ -12,21 +12,54 @@ class Commandes
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="com_id", type="integer")
      */
-    private $id;
+    private $comId;
 
     // add your own fields
     
-    /**
-     * @ORM\OneToMany(targetEntity="Produits" , mappedBy="Commandes")
-     * @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     /**
+     * @var Produits
+     *
+     * @ORM\ManyToOne(targetEntity="Produits")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * })
      */
-    private $idProduit;
+    private $proId;
     
-    /**
-     * @ORM\OneToMany(targetEntity="User" , mappedBy="Commandes")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_name")
+     * })
      */
-    private $idUser;
+    private $userId;
+    function getComId() {
+        return $this->comId;
+    }
+
+    function getProId(): \Produits {
+        return $this->proId;
+    }
+
+    function getUserId(): \User {
+        return $this->userId;
+    }
+
+    function setComId($comId) {
+        $this->comId = $comId;
+    }
+
+    function setProId(\Produits $proId) {
+        $this->proId = $proId;
+    }
+
+    function setUserId(\User $userId) {
+        $this->userId = $userId;
+    }
+
+
 }

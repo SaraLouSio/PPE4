@@ -10,8 +10,10 @@ easy_admin:
         form_theme: 'horizontal'
         
         menu:
-            - label: 'Utilisateurs'
+            - label: 'Gestion du site'
             - { entity: 'User', icon: 'users'}
+            - { entity: 'Produits', icon: 'users'}
+            - { entity: 'Categorie', icon: 'users'}
             
             - label: 'Liens éditeur'
             - {label: Symfony,url: "https://symfony.com/", target: "_blank", icon: "thumbs-o-up"}
@@ -41,6 +43,44 @@ easy_admin:
                     - {property: 'email', type: 'email'}
                     - {property: 'role', type: 'choice', type_options:
                         {choices: {'Utilisateur':'ROLE_USER', 'Admin':'ROLE_ADMIN'}}}
+        
+        Produits:
+            class: App\Entity\Produits
+            list:
+                title: "Liste des produits"
+                fields:
+                    - {property: 'pro_id'}
+                    - {property: 'pro_nom',type: 'text'}
+                    - {property: 'pro_prix'}
+                    - {property: 'pro_active', type: 'toggle'}
+                    - {property: 'pro_date', type: 'date'}
+                    - {property: 'pro_image',type: 'text'}
+                    - {property: 'cat_id'}
+            form:
+                title: "ajout d'un produit"
+                
+                fields:
+                    - {property: 'pro_id'}
+                    - {property: 'pro_nom',type: 'text'}
+                    - {property: 'pro_prix'}
+                    - {property: 'pro_active', type: 'checkbox'}
+                    - {property: 'pro_date', type: 'date'}
+                    - {property: 'pro_image',type: 'text'}
+                    - {property: 'cat_id', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' }}
+        
+        Categorie:
+            class: App\Entity\Categorie
+            list:
+                title: "Liste des catégories"
+                fields:
+                    - {property: 'cat_id'}
+                    - {property: 'cat_libelle',type: 'text'}
+
+            form:
+                title: "ajout d'une catégorie"
+                
+                fields:
+                    - {property: 'cat_libelle',type: 'text'}
                             
                     
                             

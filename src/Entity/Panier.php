@@ -14,24 +14,65 @@ class Panier {
      * @ORM\GeneratedValue
      * @ORM\Column(name="pan_id", type="integer")
      */
-    private $id;
+    private $PanId;
     // add your own fields
     
      /**
      * @ORM\Column(name="pan_quantite", type="integer")
      */
-    private $quantite;
+    private $panQuantite;
+    
+     /**
+     * @var Produits
+     *
+     * @ORM\ManyToOne(targetEntity="Produits")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * })
+     */
+    private $proId;
     
     /**
-     * @ORM\OneToMany(targetEntity="Produits", mappedBy="Panier")
-     * @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_name")
+     * })
      */
-    private $idProduit;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="Panier")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
-     */
-    private $idUser;
+    private $userId;
+    function getPanId() {
+        return $this->PanId;
+    }
+
+    function getPanQuantite() {
+        return $this->panQuantite;
+    }
+
+    function getProId(): \Produits {
+        return $this->proId;
+    }
+
+    function getUserId(): \User {
+        return $this->userId;
+    }
+
+    function setPanId($PanId) {
+        $this->PanId = $PanId;
+    }
+
+    function setPanQuantite($panQuantite) {
+        $this->panQuantite = $panQuantite;
+    }
+
+    function setProId(\Produits $proId) {
+        $this->proId = $proId;
+    }
+
+    function setUserId(\User $userId) {
+        $this->userId = $userId;
+    }
+
+
 
 }
