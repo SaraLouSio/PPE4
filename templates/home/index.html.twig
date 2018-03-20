@@ -11,7 +11,7 @@
     <div class='background-books'>
 
         <div class="container"  >
-            <h1 class="center text-center font-fam-brush" style="font-size: 150px;color: #ad8c71"><i>Book Store</i></h1>
+            <h1 class="center text-center font-fam-brush" style="min-height: 250px; font-size: 150px;color: #ad8c71"><i>Book Store</i></h1>
         </div>
     </div>
     {#<div class="separator-test"></div>#}
@@ -42,7 +42,7 @@
                                             <img class="card-img-top" height="250"  src="{{produit.getProImage}}" alt="Card image cap">
                                             <div class="card-body">
                                                 <p class="card-text">{{produit.getProNom}}</p>
-                                                <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-secondary">Go somewhere</a>
+                                                <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-secondary">Plus d'infos</a>
                                             </div>
                                         </div>
                                     </div>

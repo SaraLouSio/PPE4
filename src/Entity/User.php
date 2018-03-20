@@ -38,7 +38,7 @@ class User implements UserInterface, \Serializable{
      */
     private $email;
 
-    function toString() {
+    function __toString() {
         return $this->userName;
     }
 

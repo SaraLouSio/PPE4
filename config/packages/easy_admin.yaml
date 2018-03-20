@@ -11,9 +11,10 @@ easy_admin:
         
         menu:
             - label: 'Gestion du site'
-            - { entity: 'User', icon: 'users'}
+            - { entity: 'User', icon: 'users' , label: 'Utilisateurs'}
             - { entity: 'Produits', icon: 'users'}
             - { entity: 'Categorie', icon: 'users'}
+            - { entity: 'Panier', icon: 'users'}
             
             - label: 'Liens éditeur'
             - {label: Symfony,url: "https://symfony.com/", target: "_blank", icon: "thumbs-o-up"}
@@ -49,24 +50,22 @@ easy_admin:
             list:
                 title: "Liste des produits"
                 fields:
-                    - {property: 'pro_id'}
-                    - {property: 'pro_nom',type: 'text'}
-                    - {property: 'pro_prix'}
-                    - {property: 'pro_active', type: 'toggle'}
-                    - {property: 'pro_date', type: 'date'}
-                    - {property: 'pro_image',type: 'text'}
-                    - {property: 'cat_id'}
+                    - {property: 'pro_id' , label: 'Id'}
+                    - {property: 'pro_nom',type: 'text' , label: 'Nom'}
+                    - {property: 'pro_prix' , label: 'Prix'}
+                    - {property: 'pro_active', type: 'toggle' , label: 'Actif'}
+                    - {property: 'pro_image',type: 'text' , label: 'Lien image'}
+                    - {property: 'pro_stock',type: 'integer' , label: 'Stock'}
+                    - {property: 'cat_id' , label: 'Catégorie'}
             form:
                 title: "ajout d'un produit"
-                
                 fields:
-                    - {property: 'pro_id'}
-                    - {property: 'pro_nom',type: 'text'}
-                    - {property: 'pro_prix'}
-                    - {property: 'pro_active', type: 'checkbox'}
-                    - {property: 'pro_date', type: 'date'}
-                    - {property: 'pro_image',type: 'text'}
-                    - {property: 'cat_id', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' }}
+                    - {property: 'pro_nom',type: 'text' , label: 'Nom'}
+                    - {property: 'pro_prix', type: 'integer' , label: 'Prix'}
+                    - {property: 'pro_active', type: 'checkbox' , label: 'Actif'}
+                    - {property: 'pro_image',type: 'text' , label: 'Lien image'}
+                    - {property: 'pro_stock',type: 'integer' , label: 'Stock'}
+                    - {property: 'cat_id', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' }, label: 'Catégorie'}
         
         Categorie:
             class: App\Entity\Categorie
@@ -81,7 +80,25 @@ easy_admin:
                 
                 fields:
                     - {property: 'cat_libelle',type: 'text'}
-                            
+        
+        Panier:
+            class: App\Entity\Panier
+            list:
+                title: "Paniers des utilisateurs"
+                fields:
+                    - {property: 'pan_id'}
+                    - {property: 'pro_id',type: 'text' , label: 'Produit'}
+                    - {property: 'user_id', label: 'Utilisateur'}
+                    - {property: 'pan_quantite', label: 'Quantité'}
+            form:
+                title: "ajout d'un panier"
+                
+                fields:
+                    - {property: 'pan_id'}
+                    - {property: 'pro_id',type: 'text' , label: 'Produit'}
+                    - {property: 'user_id' , label: 'Utilisateur'}
+                    - {property: 'pan_quantite', label: 'Quantité'}
+
                     
                             
                  

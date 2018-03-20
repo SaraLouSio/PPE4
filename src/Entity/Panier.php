@@ -9,41 +9,54 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Panier {
 
-     /**
-     * @var Produits
+    /**
      * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(name="pan_id", type="integer")
+     */
+    private $panId;
+
+    /**
+     * @var Produits
      * @ORM\ManyToOne(targetEntity="Produits")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
      * })
      */
     private $proId;
-    
+
     /**
      * @var User
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_name")
      * })
      */
     private $userId;
-    
-     /**
+
+    /**
      * @ORM\Column(name="pan_quantite", type="integer")
      */
     private $panQuantite;
-    
-    function getProId(): Produits {
+
+    function getPanId() {
+        return $this->panId;
+    }
+
+    function getProId() {
         return $this->proId;
     }
 
-    function getUserId(): User {
+    function getUserId() {
         return $this->userId;
     }
 
     function getPanQuantite() {
         return $this->panQuantite;
+    }
+    
+    function setPanId($panId) {
+        $this->panId = $panId;
     }
 
     function setProId($proId) {
@@ -57,6 +70,5 @@ class Panier {
     function setPanQuantite($panQuantite) {
         $this->panQuantite = $panQuantite;
     }
-
 
 }

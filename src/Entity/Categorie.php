@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
  */
-class Categorie
-{
+class Categorie {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -16,26 +16,29 @@ class Categorie
      */
     private $catId;
 
-     /**
+    /**
      * @ORM\Column(name="cat_libelle", type="string", length=255, nullable=false)
      */
-     private $catLibelle;
-     function getCatId() {
-         return $this->catId;
-     }
+    private $catLibelle;
 
-     function getCatLibelle() {
-         return $this->catLibelle;
-     }
+    function __toString() {
+        return $this->catLibelle;
+    }
 
-     function setCatId($catId) {
-         $this->catId = $catId;
-     }
+    function getCatId() {
+        return $this->catId;
+    }
 
-     function setCatLibelle($catLibelle) {
-         $this->catLibelle = $catLibelle;
-     }
+    function getCatLibelle() {
+        return $this->catLibelle;
+    }
 
+    function setCatId($catId) {
+        $this->catId = $catId;
+    }
 
-    
+    function setCatLibelle($catLibelle) {
+        $this->catLibelle = $catLibelle;
+    }
+
 }

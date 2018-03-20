@@ -37,15 +37,20 @@ class Commandes
      * })
      */
     private $userId;
+    
+    function __toString() {
+        return $this->comId;
+    }
+    
     function getComId() {
         return $this->comId;
     }
 
-    function getProId(): \Produits {
+    function getProId(){
         return $this->proId;
     }
 
-    function getUserId(): \User {
+    function getUserId(){
         return $this->userId;
     }
 
@@ -53,13 +58,12 @@ class Commandes
         $this->comId = $comId;
     }
 
-    function setProId(\Produits $proId) {
+    function setProId($proId) {
         $this->proId = $proId;
     }
 
-    function setUserId(\User $userId) {
+    function setUserId($userId) {
         $this->userId = $userId;
     }
-
 
 }

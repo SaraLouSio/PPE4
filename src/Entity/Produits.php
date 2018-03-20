@@ -33,11 +33,6 @@ class Produits {
     private $proActive;
 
     /**
-     * @ORM\Column(name="pro_date",  type="date", nullable=false)
-     */
-    private $proDate;
-
-    /**
      * @ORM\Column(name="pro_image", type="string", length=500, nullable=false , options={"default" : "http://manutentionquebec.com/wp-content/themes/manutentionquebe/images/aucune-image.jpg"})
      */
     private $proImage;
@@ -46,6 +41,11 @@ class Produits {
      * @ORM\Column(name="pro_Resume", type="string", length=1500, nullable=false)
      */
     private $proResume;
+    
+    /**
+     * @ORM\Column(name="pro_stock", type="integer", nullable=false)
+     */
+    private $proStock;
 
     /**
      * @var Categorie
@@ -58,9 +58,8 @@ class Produits {
      */
     private $catId;
 
-    public function __construct() {
-        $this->catId = new Categorie();
-        $this->proDate = new DateTime('now');
+    public function __toString() {
+        return $this->proNom;
     }
 
     function getProId() {
@@ -79,15 +78,15 @@ class Produits {
         return $this->proActive;
     }
 
-    function getProDate() {
-        return $this->proDate;
-    }
-
     function getProImage() {
         return $this->proImage;
     }
+    
+    function getProStock() {
+        return $this->proStock;
+    }
 
-    function getCatId(): Categorie {
+    function getCatId(){
         return $this->catId;
     }
     
@@ -111,12 +110,12 @@ class Produits {
         $this->proActive = $proActive;
     }
 
-    function setProDate($proDate) {
-        $this->proDate = $proDate;
-    }
-
     function setProImage($proImage) {
         $this->proImage = $proImage;
+    }
+    
+    function setProStock($proStock) {
+        $this->proStock = $proStock;
     }
 
     function setCatId($catId) {
@@ -124,7 +123,7 @@ class Produits {
     }
 
     function setProResume($proResume) {
-        $this->$proResume = $proResume;
+        $this->proResume = $proResume;
     }
 
 

@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
 use App\Entity\Panier;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 /**
  * Description of PanierController
@@ -41,7 +42,7 @@ class PanierController extends AbstractController {
 //            );
 //        }
         
-        return $this->render('home/produit.html.twig', array('panier' => $panier));
+        return $this->render('home/panier.html.twig', array('panier' => $panier));
     }
     
      /**
@@ -56,20 +57,30 @@ class PanierController extends AbstractController {
                     'userId' => $this->getUser()->getUsername(),
                     'proId' => $id
                 ]);
+         $produit = $this->getDoctrine()
+                ->getRepository(Produits::class)
+                ->findOneBy([
+                    'proId' => $id
+                ]);
+         
+         $user = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findOneBy([
+                    'userName' => $this->getUser()->getUsername()
+                ]);
                 
          if(!$panier){
              //ajout du nouveau produit
             $nouveauPanier = new Panier;
-            $nouveauPanier->setProId($id);
-            $nouveauPanier->setUserId($this->getUser()->getUsername());
+            $nouveauPanier->setProId($produit);
+            $nouveauPanier->setUserId($user);
             $nouveauPanier->setPanQuantite(1);
             $em->persist($nouveauPanier);
             $em->flush();
          } else {
              //incrementer
          }
-var_dump($panier);die;
-        
+         
         return $this->redirect($this->generateUrl('panier'));
     }
 }
