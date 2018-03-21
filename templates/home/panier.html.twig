@@ -10,21 +10,32 @@
                             <th scope="col">Produit</th>
                             <th scope="col">Prix</th>
                             <th scope="col">Quantité</th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for pan in panier %}
                             <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <th scope="row">{{pan.getProId}}</th>
+                                <td>{{pan.getProId.getProPrix}}</td>
+                                <td>
+                                    <a href="{{ path('moinsPanier', { 'id': pan.getProId.getProId }) }}" 
+                                       class="btn btn-secondary {% if pan.getPanQuantite == 1 %} btn-delete {%endif%} btn-sm" > - </a> 
+                                    {{pan.getPanQuantite}}
+                                    <a href="{{ path('ajoutPanier', { 'id': pan.getProId.getProId }) }}" class="btn btn-secondary btn-sm" >+</a>
+                                </td>
                             </tr>
+                            
                         {% endfor %}
                     </tbody>
                 </table>
             {% endif %}
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+$('.btn-delete').on('click', function () {
+        return confirm('Voulez vous vraiment supprimer ce produit de votre panier ?' );
+    });
+    </script>
 {% endblock %}

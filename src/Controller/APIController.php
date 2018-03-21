@@ -8,30 +8,67 @@
 
 namespace App\Controller;
 
+use App\Entity\Produits;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Flex\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Description of APiController
  *
  * @author Sara
  */
-class APIController {
+class APIController extends AbstractController {
     //put your code here
 
     /**
      * 
-     * @Route ("/usersClassique/{id}",name="un_user_cla")
+     * @Route ("/apiGet/produit/{id}",name="getProduitById")
      */
     public function apiUserMethodeClassique($id, EntityManagerInterface $em) {
-        $unUser = $em->getRepository(User::class)->findById($id);
+        $unProduit = $em->getRepository(Produits::class)->findOneByProId($id);
+
         $serializer = $this->get('serializer');
-        $data = $serializer->serialize($unUser[0], 'json');
+        $data = $serializer->serialize($unProduit, 'json');
         $response = new Response($data);
         $response->headers->set('content-type', 'application/json');
         $response->headers->set('Ok', 'oui');
+        return $response;
+    }
+
+    /**
+     * 
+     * @Route ("/apiGetAuto/produit/{id}",name="getProduitByIdAuto")
+     */
+    public function apiUserMethodeAuto(Produits $unProduit, EntityManagerInterface $em) {
+        $serializer = $this->get('serializer');
+        $data = $serializer->serialize($unProduit, 'json');
+        $response = new Response($data);
+        $response->headers->set('content-type', 'application/json');
+        $response->headers->set('Ok', 'oui');
+        return $response;
+    }
+
+    /**
+     * 
+     * @Route ("/setproduit",name="api_set_produit",methods="post")
+     */
+    public function setProduit(Request $request, EntityManagerInterface $em) {
+
+        $serializer = $this->get('serializer');
+        $unProduit = $serializer->deserialize($request->getContent(), Produits::class, 'json');
+
+        dump($unProduit);die;
+        $em->persist($unProduit);
+        $em->flush();
+
+        $response = new Response("L'ajout est réalisé");
+        $response->headers->set('Content-type', 'application/text');
+        $response->headers->set('Ok', 'oui');
+//        $lesDonnees = json_decode($request->getContent());
+//        dump($lesDonnees);
         return $response;
     }
 
