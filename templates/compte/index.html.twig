@@ -1,15 +1,22 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container-fluid" >
+    
+ 
+        <div class="container"  >
+            <h1 class="center text-center " style="margin-top: 20px; font-size: 50px;"><i>Gestion du compte</i></h1>
+        </div>
+  
+    <div class="container-fluid" style="margin-bottom: 20px;" >
         <div class="row">
-            <div class="col-sm-3" style="margin-top: 75px;">
+            <div class="col-sm-3" style="margin-top: 50px;">
                 <div class="container border-custom-little font-fam-courrier">
                     <div class='row'>
                         <div>
                             <h3>
                                 <a 
                                     {#href="{{ path('home', { 'categorie': cat.getCatLibelle }) }}" #}
+                                    href="#"
                                     class="btn-transparent">
                                     Accueil
                                 </a>
@@ -18,7 +25,7 @@
                         <div>
                             <h4>
                                 <a 
-                                    {#href="{{ path('home', { 'categorie': cat.getCatLibelle }) }}" #}
+                                    href="{{ path('changerMdp') }}" 
                                     class="btn-transparent">
                                     Changer mot de passe
                                 </a>
@@ -30,8 +37,9 @@
 
             <div class="col-sm-8 offset-1" style="margin-top: 50px;">
                 <div class="container-fluid font-fam-courrier" >
-
-                    <h1 class="title" >{{page}}</h1>
+                   {# <h1 class="title" >Gestion du compte</h1>#}
+                    {% block compte %}
+                    {% endblock compte %}
                 </div>
             </div>
         </div>

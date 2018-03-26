@@ -1,0 +1,121 @@
+{% extends "compte/index.html.twig" %}
+{% block compte %}
+    <div class="col-sm-4" >
+        <div class="container">
+
+            <div class="row text-center justify-content-center "><h2>Changer mot de passe</h2></div>
+            <br>
+            <div class="row text-center justify-content-center ">
+
+                <form action="{{ path('changerMdp') }}" method="post">
+                    <div  class="form-group">
+                        <label for="mdp">Mot de passe :</label>
+                        <input disabled class="form-control" type="password" id="mdp" name="mdp" />
+                    </div>
+
+                    <div class="form-group background-transparent">
+                        <div>
+                            {% for i in 0..4 %}
+                                <button type="button" id="btn-connexion-{{ i }}" class="btn-connexion btn-brown"  >
+                                </button>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for i in 5..9 %}
+                                <button type="button" id="btn-connexion-{{ i }}" class="btn-connexion btn-brown" >
+                                </button>
+                            {% endfor %}
+                        </div>
+
+                        <div>
+                            <button type="button" id="btn-annuler-connexion" style="margin-top: 10px;"
+                                    class="btn-brown" >Annuler</button>
+                        </div>
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="mdpVerif">Verifier :</label>
+                        <input disabled class="form-control" type="password" id="mdpVerif" name="mdpVerif" />
+                    </div>
+
+                    <div class="form-group background-transparent">
+                        <div>
+                            {% for i in 0..4 %}
+                                <button type="button" id="btn-verif-connexion-{{ i }}" 
+                                        class="btn-verif-connexion btn-brown"  ></button>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for i in 5..9 %}
+                                <button type="button" id="btn-verif-connexion-{{ i }}" 
+                                        class="btn-verif-connexion btn-brown" ></button>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            <button type="button" id="btn-annuler-verif-connexion" style="margin-top: 10px;"
+                                    class="btn-brown" >Annuler</button>
+                        </div>
+                    </div>
+
+                    <button class="btn" type="submit">Valider</button>
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock compte%}
+{% block javascripts %}
+    <script>
+
+        $(".btn-connexion").on("click", function () {
+            // alert($(this).val());
+            $("#mdp").val($("#mdp").val() + $(this).val());
+        });
+
+        $("#btn-annuler-connexion").on("click", function () {
+            // alert($(this).val());
+            $("#mdp").val(null);
+        });
+
+        $(".btn-verif-connexion").on("click", function () {
+            // alert($(this).val());
+            $("#mdpVerif").val($("#mdpVerif").val() + $(this).val());
+        });
+
+        $("#btn-annuler-verif-connexion").on("click", function () {
+            // alert($(this).val());
+            $("#mdpVerif").val(null);
+        });
+        function genererChiffres() {
+            let chifflesAleatoires = [];
+            while (chifflesAleatoires.length < 10) {
+                let aleat = Math.floor(Math.random() * Math.floor(10));
+                let chiffre = true;
+                if (chifflesAleatoires.length > 0) {
+                    for (let i = 0; i < chifflesAleatoires.length; i++) {
+                        if (aleat == chifflesAleatoires[i]) {
+                            chiffre = false;
+                        }
+                    }
+                }
+                if (chiffre == true) {
+                    chifflesAleatoires.push(aleat);
+                }
+            }
+            return chifflesAleatoires;
+        }
+        function remplirCode(id, tableau) {
+            for (let i = 0; i < 10; i++) {
+                $("#" + id + i).val(tableau[i]);
+                $("#" + id + i).text(tableau[i]);
+            }
+        }
+
+        remplirCode("btn-connexion-", genererChiffres());
+        remplirCode("btn-verif-connexion-", genererChiffres());
+
+    </script>
+{% endblock javascripts %}
