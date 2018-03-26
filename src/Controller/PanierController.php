@@ -35,11 +35,6 @@ class PanierController extends AbstractController {
                 ->findBy([
             'userId' => $this->getUser()->getUsername()
         ]);
-//        if (!$panier) {
-//            throw $this->createNotFoundException(
-//                    'Aucun produits présents dans le panier'
-//            );
-//        }
 
         return $this->render('home/panier.html.twig', array('panier' => $panier));
     }

@@ -103,11 +103,15 @@ footer{
 
 .btn-transparent{
     cursor: default;
+    color:white;
 }
 
 .btn-transparent:hover{
     background-color: hsla(27, 0%, 82%, 0.1);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-radius: 50px;
+    color:white;
+
 }
 
 .font-fam-courrier{

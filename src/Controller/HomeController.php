@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
+use App\Entity\Categorie;
 
 //TODO : finir entity -> pages produit -> panier
 /*
@@ -23,37 +24,55 @@ class HomeController extends AbstractController {
     //put your code here
 
     /**
-     * @route("/",name="home")
+     * @route("/",name="redirectHome")
      * @return Response
      */
-    public function indexController() {
-        
-         $produits = $this->getDoctrine()
-                ->getRepository(Produits::class)
-                ->findAll();
-        if (!$produits) {
-            throw $this->createNotFoundException(
-                    'Aucun produits'
-            );
-        }
-        
-        return $this->render('home/index.html.twig', array('produits' => $produits));
+    public function redirectToAcceuil() {
+        return $this->redirect($this->generateUrl('home'));
     }
-    
+
+    /**
+     * @route("/Accueil/{categorie}",defaults = {"categorie"=null},name="home")
+     * @return Response
+     */
+    public function indexController($categorie) {
+        if ($categorie) {
+            
+            $catId = $this->getDoctrine()
+                    ->getRepository(Categorie::class)
+                    ->findOneByCatLibelle($categorie);
+            if ($catId) {
+                $produits = $this->getDoctrine()
+                        ->getRepository(Produits::class)
+                        ->findByCatId($catId->getCatId());
+                $page = $catId;
+            } else {
+                $page = 'Catégorie "'.$categorie.'" innexistante';
+                $produits = null;
+            }
+        } else {
+            $produits = $this->getDoctrine()
+                    ->getRepository(Produits::class)
+                    ->findAll();
+            $page = "Accueil";
+        }
+        $categories = $this->getDoctrine()
+                ->getRepository(Categorie::class)
+                ->findAll();
+
+
+        return $this->render('home/index.html.twig', [
+                    'produits' => $produits,
+                    'categories' => $categories,
+                    'page' => $page]);
+    }
+
     /**
      * @Route("/visiteur",name="visiteur")
      * @return Response
      */
-    public function visiteurController(){
+    public function visiteurController() {
         return $this->render('visiteur/visiteur.html.twig');
-    }
-    
-     /**
-     * @Route("/perso",name="perso")
-     * @return Response
-     */
-    public function persoController(){
-        return $this->render('perso/perso.html.twig');
     }
 
 }
