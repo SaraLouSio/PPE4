@@ -18,9 +18,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% set comId = 0 %} 
                             {% set total = 0 %}
                             {% for cont in contenu %}
                                 {% if cont.getIdCommande.getComId == com.getComId %}
+                                    {% set comId = cont.getIdCommande.getComId %} 
                                     <tr>
                                         <th scope="row">
                                             <a href="{{ path('produit', { 'id': cont.getIdProduit.getProId }) }}" class="btn-transparent">
@@ -33,6 +35,14 @@
                                     </tr>
                                 {% endif %}
                             {% endfor %}
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <a href="{{ path('getFacturePdf' , {'idCommande' : comId })}}" class="btn btn-brown-border">
+                                        Imprimer facture
+                                    </a>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
 

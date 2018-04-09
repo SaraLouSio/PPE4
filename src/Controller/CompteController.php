@@ -80,5 +80,6 @@ class CompteController extends AbstractController {
                     'commandes' => $commandes,
                     'contenu' => $contenu]);
     }
+    
 
 }
