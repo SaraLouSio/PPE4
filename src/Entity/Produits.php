@@ -28,14 +28,9 @@ class Produits {
     private $proPrix;
 
     /**
-     * @ORM\Column(name="pro_active",  type="boolean", nullable=false)
-     */
-    private $proActive;
-
-    /**
      * @ORM\Column(name="pro_image", type="string", length=500, nullable=false , options={"default" : "http://manutentionquebec.com/wp-content/themes/manutentionquebe/images/aucune-image.jpg"})
      */
-    private $proImage;
+    private $proImage = "http://manutentionquebec.com/wp-content/themes/manutentionquebe/images/aucune-image.jpg";
 
     /**
      * @ORM\Column(name="pro_Resume", type="string", length=1500, nullable=false)
@@ -74,10 +69,6 @@ class Produits {
         return $this->proPrix;
     }
 
-    function getProActive() {
-        return $this->proActive;
-    }
-
     function getProImage() {
         return $this->proImage;
     }
@@ -104,10 +95,6 @@ class Produits {
 
     function setProPrix($proPrix) {
         $this->proPrix = $proPrix;
-    }
-
-    function setProActive($proActive) {
-        $this->proActive = $proActive;
     }
 
     function setProImage($proImage) {

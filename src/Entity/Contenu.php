@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\ContenuRepository")
  */
 class Contenu {
-    
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -17,7 +16,7 @@ class Contenu {
      */
     private $contenuId;
 
-     /**
+    /**
      * @var Commandes
      * @ORM\ManyToOne(targetEntity="Commandes")
      * @ORM\JoinColumns({
@@ -25,7 +24,7 @@ class Contenu {
      * })
      */
     private $idCommande;
-    
+
     /**
      * @var Produits
      * @ORM\ManyToOne(targetEntity="Produits")
@@ -34,25 +33,30 @@ class Contenu {
      * })
      */
     private $idProduit;
-    
-     /**
+
+    /**
      * @ORM\Column(name="contenu_quantite", type="integer")
      */
     private $quantite;
     
-    function __toString() {
+    /**
+     * @ORM\Column(name="contenu_prix", type="integer")
+     */
+    private $contenuPrix;
+
+    public function __toString() {
         return $this->contenuId;
     }
-    
+
     function getContenuId() {
         return $this->contenuId;
     }
 
-    function getIdCommande(): Commandes {
+    function getIdCommande() {
         return $this->idCommande;
     }
 
-    function getIdProduit(): Produits {
+    function getIdProduit() {
         return $this->idProduit;
     }
 
@@ -64,17 +68,26 @@ class Contenu {
         $this->contenuId = $contenuId;
     }
 
-    function setIdCommande(Commandes $idCommande) {
+    function setIdCommande($idCommande) {
         $this->idCommande = $idCommande;
     }
 
-    function setIdProduit(Produits $idProduit) {
+    function setIdProduit($idProduit) {
         $this->idProduit = $idProduit;
     }
 
     function setQuantite($quantite) {
         $this->quantite = $quantite;
     }
+    
+    function getContenuPrix() {
+        return $this->contenuPrix;
+    }
+
+    function setContenuPrix($contenuPrix) {
+        $this->contenuPrix = $contenuPrix;
+    }
+
 
 
 }

@@ -74,5 +74,6 @@ class HomeController extends AbstractController {
     public function visiteurController() {
         return $this->render('visiteur/visiteur.html.twig');
     }
+    
 
 }

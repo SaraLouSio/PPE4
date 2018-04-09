@@ -16,12 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    {#        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="nav-item">#}
-                    <a class="nav-link" href="{{ path('admin') }}">Admin</a>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item active">
+                        {#        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+                              </li>
+                              <li class="nav-item">#}
+                        <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                    </li>
+                {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,7 +32,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ path('compte')}}" > <i class="far fa-user"></i> Compte</a>
                             <a class="dropdown-item" href="{{ path('panier')}}" > <i class="fas fa-shopping-basket"></i> Panier</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-shopping-cart"></i>Commandes</a>
+                            <a class="dropdown-item" href="{{ path('commandes')}}"><i class="fas fa-shopping-cart"></i>Commandes</a>
                             <a class="dropdown-item" href="#"> <i class="far fa-heart"></i> Favoris</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
@@ -46,10 +48,10 @@
                 {%endif%}
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            {#<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form>#}
         </div>
     </nav>
 

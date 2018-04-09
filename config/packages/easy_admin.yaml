@@ -50,22 +50,22 @@ easy_admin:
             list:
                 title: "Liste des produits"
                 fields:
-                    - {property: 'pro_id' , label: 'Id'}
-                    - {property: 'pro_nom',type: 'text' , label: 'Nom'}
-                    - {property: 'pro_prix' , label: 'Prix'}
-                    - {property: 'pro_active', type: 'toggle' , label: 'Actif'}
-                    - {property: 'pro_image',type: 'text' , label: 'Lien image'}
-                    - {property: 'pro_stock',type: 'integer' , label: 'Stock'}
-                    - {property: 'cat_id' , label: 'Catégorie'}
+                    - {property: 'pro_id' , label: 'Id' , type_options: { required: true }}
+                    - {property: 'pro_nom',type: 'text' , label: 'Nom' , type_options: { required: true }}
+                    - {property: 'pro_prix' , label: 'Prix' , type_options: { required: true }}
+                    - {property: 'pro_image',type: 'text' , label: 'Lien image' , type_options: { required: true }}
+                    - {property: 'pro_resume' ,type: 'text' , label: 'Résumé' , type_options: { required: true }}
+                    - {property: 'pro_stock',type: 'integer' , label: 'Stock' , type_options: { required: true }}
+                    - {property: 'cat_id' , label: 'Catégorie' , type_options: { required: true }}
             form:
                 title: "ajout d'un produit"
                 fields:
-                    - {property: 'pro_nom',type: 'text' , label: 'Nom'}
-                    - {property: 'pro_prix', type: 'integer' , label: 'Prix'}
-                    - {property: 'pro_active', type: 'checkbox' , label: 'Actif'}
-                    - {property: 'pro_image',type: 'text' , label: 'Lien image'}
-                    - {property: 'pro_stock',type: 'integer' , label: 'Stock'}
-                    - {property: 'cat_id', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie' }, label: 'Catégorie'}
+                    - {property: 'pro_nom',type: 'text' , label: 'Nom', type_options: { required: true }}
+                    - {property: 'pro_prix', type: 'integer' , label: 'Prix' , type_options: { required: true }}
+                    - {property: 'pro_image',type: 'text' , label: 'Lien image' , type_options: { required: true }}
+                    - {property: 'pro_resume' ,type: 'text' , label: 'Résumé' , type_options: { required: true }}
+                    - {property: 'pro_stock',type: 'integer' , label: 'Stock' , type_options: { required: true }}
+                    - {property: 'cat_id', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Categorie'}, label: 'Catégorie' }
         
         Categorie:
             class: App\Entity\Categorie

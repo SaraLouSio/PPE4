@@ -30,7 +30,7 @@ class ProduitController extends AbstractController {
         
          $produit = $this->getDoctrine()
                 ->getRepository(Produits::class)
-                ->findBy([
+                ->findOneBy([
                     'proId' => $id
                 ]);
         if (!$produit) {
@@ -39,7 +39,7 @@ class ProduitController extends AbstractController {
             );
         }
 
-        return $this->render('home/produit.html.twig', array('produit' => $produit[0]));
+        return $this->render('home/produit.html.twig', array('produit' => $produit));
     }
     
 }

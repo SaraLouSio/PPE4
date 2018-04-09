@@ -27,11 +27,25 @@ class APIController extends AbstractController {
      * 
      * @Route ("/apiGet/produit/{id}",name="getProduitById")
      */
-    public function apiUserMethodeClassique($id, EntityManagerInterface $em) {
+    public function apiGetProduitUserMethodeClassique($id, EntityManagerInterface $em) {
         $unProduit = $em->getRepository(Produits::class)->findOneByProId($id);
 
         $serializer = $this->get('serializer');
         $data = $serializer->serialize($unProduit, 'json');
+        $response = new Response($data);
+        $response->headers->set('content-type', 'application/json');
+        $response->headers->set('Ok', 'oui');
+        return $response;
+    }
+    
+    /**
+     * 
+     * @Route ("/apiGet/produits/all",name="getProduits")
+     */
+    public function apiGetAllProduitUserMethodeClassique(EntityManagerInterface $em) {
+        $produits = $em->getRepository(Produits::class)->findAll();
+        $serializer = $this->get('serializer');
+        $data = $serializer->serialize($produits, 'json');
         $response = new Response($data);
         $response->headers->set('content-type', 'application/json');
         $response->headers->set('Ok', 'oui');
@@ -60,7 +74,6 @@ class APIController extends AbstractController {
         $serializer = $this->get('serializer');
         $unProduit = $serializer->deserialize($request->getContent(), Produits::class, 'json');
 
-        dump($unProduit);die;
         $em->persist($unProduit);
         $em->flush();
 

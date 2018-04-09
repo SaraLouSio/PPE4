@@ -1,16 +1,33 @@
 {% extends "compte/index.html.twig" %}
+{% block titrecompte %}
+    {% if succes %}
+        {% if succes == "Y" %}
+            <div 
+                class="alert alert-success"
+                role="alert">
+                Mot de passes identiques
+            </div>
+        {% endif%}
+        {% if succes == "N" %}
+            <div 
+                class="alert alert-danger"
+                role="alert">
+                Les mots de passes doivent être identiques
+            </div>
+        {% endif%}
+    {%else%}
+        Changer mot de passe
+    {% endif%}
+{% endblock titrecompte %}
 {% block compte %}
-    <div class="col-sm-4" >
+    <div class="col-8" >
         <div class="container">
-
-            <div class="row text-center justify-content-center "><h2>Changer mot de passe</h2></div>
             <br>
             <div class="row text-center justify-content-center ">
-
-                <form action="{{ path('changerMdp') }}" method="post">
+                <form action="{{ path('postChangerMdp') }}" method="post">
                     <div  class="form-group">
                         <label for="mdp">Mot de passe :</label>
-                        <input disabled class="form-control" type="password" id="mdp" name="mdp" />
+                        <input readonly class="form-control" type="password" id="mdp" name="mdp" />
                     </div>
 
                     <div class="form-group background-transparent">
@@ -35,7 +52,7 @@
 
                     <div  class="form-group">
                         <label for="mdpVerif">Verifier :</label>
-                        <input disabled class="form-control" type="password" id="mdpVerif" name="mdpVerif" />
+                        <input readonly class="form-control" type="password" id="mdpVerif" name="mdpVerif" />
                     </div>
 
                     <div class="form-group background-transparent">
