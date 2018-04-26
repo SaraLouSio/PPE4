@@ -39,6 +39,7 @@ class PdfController extends AbstractController {
 
         $dateActu = date('d-m-Y');
 
+        $total = 0;
         $contenuHtml = "<html>
                             <head>
                                 <style>
@@ -47,11 +48,12 @@ class PdfController extends AbstractController {
                                     }
                                 </style>
                             </head>"
+                . "<h1 style='text-align: center;font-size: 150%;'><b>Bookstore</b></h1> <br/>"
                 . "<p>Facture du " . $dateActu . "</p>"
                 . "<br/>";
 
-            $contenuHtml = $contenuHtml . "<p>Commande n°" . $idCommande . "</p>";
-            $contenuHtml = $contenuHtml . "<table>
+        $contenuHtml = $contenuHtml . "<p>Commande n°" . $idCommande . "</p>";
+        $contenuHtml = $contenuHtml . "<table>
                     <thead>
                         <tr>
                             <th style ='width: 300px;'>Produit</th>
@@ -60,11 +62,10 @@ class PdfController extends AbstractController {
                             <th style ='width: 100px;'>Total</th>                  
                         </tr>
                     </thead> ";
-            foreach ($contenu as $cont) {
-
-
-                $contenuHtml = $contenuHtml .
-                        " <tbody> 
+        foreach ($contenu as $cont) {
+            $total = $total + ($cont->getContenuPrix() * $cont->getQuantite() );
+            $contenuHtml = $contenuHtml .
+                    " <tbody> 
                                 <tr> 
                                     <td style ='width: 300px;'>
                                     " . $cont->getIdProduit()->getProNom() . "
@@ -87,8 +88,8 @@ class PdfController extends AbstractController {
 //                            . " Total : " . $cont->getContenuPrix() * $cont->getQuantite() . "</p>"
 //                            . "<hr>";
 //                
-            }
-            $contenuHtml = $contenuHtml . "<br/>";
+        }
+        $contenuHtml = $contenuHtml . "<br/> <p style='text-align: right;' >Total : " . $total . "</p>";
         $contenuHtml = $contenuHtml . "</html>";
         // On  crée une instance de Dompdf
         $dompdf = new Dompdf();

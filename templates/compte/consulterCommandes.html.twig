@@ -15,14 +15,19 @@
                             <tr>
                                 <th scope="col">Produit</th>
                                 <th scope="col">Quantité</th>
+                                <th scope="col">Prix Unitaire</th>
+                                <th scope="col">Total</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             {% set comId = 0 %} 
                             {% set total = 0 %}
                             {% for cont in contenu %}
+ 
                                 {% if cont.getIdCommande.getComId == com.getComId %}
-                                    {% set comId = cont.getIdCommande.getComId %} 
+                                    {% set comId = cont.getIdCommande.getComId %}
+                                    {% set total = total + cont.getQuantite*cont.getContenuPrix%}
                                     <tr>
                                         <th scope="row">
                                             <a href="{{ path('produit', { 'id': cont.getIdProduit.getProId }) }}" class="btn-transparent">
@@ -32,6 +37,12 @@
                                         <td>
                                             {{cont.getQuantite}}
                                         </td>
+                                        <td>
+                                            {{cont.getContenuPrix}}
+                                        </td>
+                                        <td>
+                                            {{cont.getQuantite*cont.getContenuPrix}}
+                                        </td>
                                     </tr>
                                 {% endif %}
                             {% endfor %}
@@ -40,6 +51,9 @@
                                     <a href="{{ path('getFacturePdf' , {'idCommande' : comId })}}" class="btn btn-brown-border">
                                         Imprimer facture
                                     </a>
+                                </td>
+                                <td colspan="2" class="text-center">
+                                   Total : {{total}}
                                 </td>
                             </tr>
 

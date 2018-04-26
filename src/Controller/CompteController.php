@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Commandes;
 use App\Entity\Contenu;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 /**
@@ -46,9 +48,19 @@ class CompteController extends AbstractController {
      * @Route("/compte/postChangerMotDePasse",name="postChangerMdp",methods="POST")
      * @return Response
      */
-    public function postChangerMdpController(Request $request) {
-        if ($_POST['mdp'] == $_POST['mdpVerif']) {
+    public function postChangerMdpController(Request $request,  EntityManagerInterface $em) {
+        if (strlen($_POST['mdp']) != 6) {
+            $succes = "L";
+        } elseif ($_POST['mdp'] == $_POST['mdpVerif']) {
             $succes = "Y";
+            $user = $this->getDoctrine()
+                    ->getRepository(User::class)
+                    ->findOneBy([
+                'userName' => $this->getUser()->getUsername()
+            ]);
+            $user->setPassword($_POST['mdp']);
+            $em->persist($user);
+            $em->flush();
         } else {
             $succes = "N";
         }
@@ -80,6 +92,5 @@ class CompteController extends AbstractController {
                     'commandes' => $commandes,
                     'contenu' => $contenu]);
     }
-    
 
 }

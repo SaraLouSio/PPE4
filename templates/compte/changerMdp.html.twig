@@ -5,7 +5,7 @@
             <div 
                 class="alert alert-success"
                 role="alert">
-                Mot de passes identiques
+                Changement de mot de passe réussi
             </div>
         {% endif%}
         {% if succes == "N" %}
@@ -13,6 +13,13 @@
                 class="alert alert-danger"
                 role="alert">
                 Les mots de passes doivent être identiques
+            </div>
+        {% endif%}
+        {% if succes == "L" %}
+            <div 
+                class="alert alert-danger"
+                role="alert">
+                Le mot de passe doit faire 6 caractères
             </div>
         {% endif%}
     {%else%}
@@ -27,7 +34,7 @@
                 <form action="{{ path('postChangerMdp') }}" method="post">
                     <div  class="form-group">
                         <label for="mdp">Mot de passe :</label>
-                        <input readonly class="form-control" type="password" id="mdp" name="mdp" />
+                        <input readonly maxlength="6" class="form-control" type="password" id="mdp" name="mdp" />
                     </div>
 
                     <div class="form-group background-transparent">
@@ -52,7 +59,7 @@
 
                     <div  class="form-group">
                         <label for="mdpVerif">Verifier :</label>
-                        <input readonly class="form-control" type="password" id="mdpVerif" name="mdpVerif" />
+                        <input readonly maxlength="6" class="form-control" type="password" id="mdpVerif" name="mdpVerif" />
                     </div>
 
                     <div class="form-group background-transparent">
@@ -74,7 +81,7 @@
                         </div>
                     </div>
 
-                    <button class="btn" type="submit">Valider</button>
+                    <button class="btn btn-brown-border" type="submit">Valider</button>
 
 
                 </form>
@@ -89,7 +96,8 @@
 
         $(".btn-connexion").on("click", function () {
             // alert($(this).val());
-            $("#mdp").val($("#mdp").val() + $(this).val());
+            if ($("#mdp").val().length < 6)
+                $("#mdp").val($("#mdp").val() + $(this).val());
         });
 
         $("#btn-annuler-connexion").on("click", function () {
@@ -99,7 +107,8 @@
 
         $(".btn-verif-connexion").on("click", function () {
             // alert($(this).val());
-            $("#mdpVerif").val($("#mdpVerif").val() + $(this).val());
+            if ($("#mdpVerif").val().length < 6)
+                $("#mdpVerif").val($("#mdpVerif").val() + $(this).val());
         });
 
         $("#btn-annuler-verif-connexion").on("click", function () {

@@ -10,7 +10,7 @@
                             <th scope="col">Produit</th>
                             <th scope="col">Prix</th>
                             <th scope="col">Quantité</th>
-                            <th scope="col">Prix</th>                  
+                            <th scope="col">Total</th>                  
                             <th scope="col"  width="20"></th>
                         </tr>
                     </thead>
@@ -27,9 +27,9 @@
                                 <td>{{pan.getProId.getProPrix}} €</td>
                                 <td>
                                     <a href="{{ path('moinsPanier', { 'id': pan.getProId.getProId }) }}" 
-                                       class="btn btn-outline-secondary {% if pan.getPanQuantite == 1 %} btn-delete {%endif%} btn-sm" > - </a> 
+                                       class="btn btn-brown-border {% if pan.getPanQuantite == 1 %} btn-delete {%endif%} btn-sm" > - </a> 
                                     &nbsp;{{pan.getPanQuantite}}&nbsp;
-                                    <a href="{{ path('ajoutPanierFromPanier', { 'id': pan.getProId.getProId }) }}" class="btn btn-outline-secondary btn-sm" >+</a>
+                                    <a href="{{ path('ajoutPanierFromPanier', { 'id': pan.getProId.getProId }) }}" class="btn btn-brown-border btn-sm" >+</a>
                                 </td>
                                 <td>
                                     {{pan.getPanQuantite*pan.getProId.getProPrix}} €

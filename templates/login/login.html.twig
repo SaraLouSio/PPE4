@@ -13,23 +13,89 @@
 
             <form action="{{ path('login') }}" method="post">
                 <div  class="form-group">
-                    <label for="username">Username :</label>
+                    <label for="username">Identifiant :</label>
                     <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"/>
                 </div>
-                <div  class="form-group">
+             {#   <div  class="form-group">
                     <label for="password">Password :</label>
                     <input class="form-control" type="password" id="password" name="_password" />
+                </div>#}
+
+                <div  class="form-group">
+                    <label for="mdp">Mot de passe :</label>
+                    <input readonly maxlength="6" class="form-control" type="password" id="password" name="_password" />
                 </div>
 
+                <div class="form-group background-transparent">
+                    <div>
+                        {% for i in 0..4 %}
+                            <button type="button" id="btn-connexion-{{ i }}" class="btn-connexion btn-brown"  >
+                            </button>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        {% for i in 5..9 %}
+                            <button type="button" id="btn-connexion-{{ i }}" class="btn-connexion btn-brown" >
+                            </button>
+                        {% endfor %}
+                    </div>
 
-                <button class="btn" type="submit">login</button>
-                <div>
-                <a class="btn" href=''>Créer un compte </a>
+                    <div>
+                        <button type="button" id="btn-annuler-connexion" style="margin-top: 10px;"
+                                class="btn-brown" >Annuler</button>
+                    </div>
                 </div>
+
+                <button class="btn btn-brown-border" type="submit">Se connecter</button>
+                
+                    <a class="btn btn-brown-border" href=''>Créer un compte </a>
+                
 
             </form>
-            
+
 
         </div>
     </div>
 {% endblock body %}
+{% block javascripts %}
+    <script>
+
+        $(".btn-connexion").on("click", function () {
+            // alert($(this).val());
+            if ($("#password").val().length < 6)
+                $("#password").val($("#password").val() + $(this).val());
+        });
+
+        $("#btn-annuler-connexion").on("click", function () {
+            // alert($(this).val());
+            $("#password").val(null);
+        });
+        function genererChiffres() {
+            let chifflesAleatoires = [];
+            while (chifflesAleatoires.length < 10) {
+                let aleat = Math.floor(Math.random() * Math.floor(10));
+                let chiffre = true;
+                if (chifflesAleatoires.length > 0) {
+                    for (let i = 0; i < chifflesAleatoires.length; i++) {
+                        if (aleat == chifflesAleatoires[i]) {
+                            chiffre = false;
+                        }
+                    }
+                }
+                if (chiffre == true) {
+                    chifflesAleatoires.push(aleat);
+                }
+            }
+            return chifflesAleatoires;
+        }
+        function remplirCode(id, tableau) {
+            for (let i = 0; i < 10; i++) {
+                $("#" + id + i).val(tableau[i]);
+                $("#" + id + i).text(tableau[i]);
+            }
+        }
+
+        remplirCode("btn-connexion-", genererChiffres());
+
+    </script>
+{% endblock javascripts %}
