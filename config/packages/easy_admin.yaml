@@ -31,7 +31,6 @@ easy_admin:
                 fields:
                     - {property: 'user_name',type: 'text'}
                     - {property: 'password'}
-                    - {property: 'is_active', type: 'toggle'}
                     - {property: 'email', type: 'email'}
                     - {property: 'role'}
             form:
@@ -40,7 +39,6 @@ easy_admin:
                 fields:
                     - {property: 'user_name',type: 'text'}
                     - {property: 'password'}
-                    - {property: 'is_active', type: 'checkbox'}
                     - {property: 'email', type: 'email'}
                     - {property: 'role', type: 'choice', type_options:
                         {choices: {'Utilisateur':'ROLE_USER', 'Admin':'ROLE_ADMIN'}}}

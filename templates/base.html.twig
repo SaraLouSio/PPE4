@@ -2,15 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bookstore{% endblock %}</title>
         <link rel="stylesheet" href="{{asset("build/css/app.css")}}" />
+        <link rel="shortcut icon" href="https://png.icons8.com/metro/1600/book.png" type="image/png" /> 
         <script defer src="/static/fontawesome/fontawesome-all.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     {% block stylesheets %}{% endblock %}
 </head>
 <body class='background-planches-brown'>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+        <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,11 +40,11 @@
                         </div>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link disabled' >Welcome {{app.user.username}}</a>
+                        <a class='nav-link disabled' >Bonjour {{app.user.username}}</a>
                     </li>
                 {%else%}
 
-                    <li><a class="nav-link" href="{{ path('login') }}">Login</a>
+                    <li><a class="nav-link" href="{{ path('login') }}">Connexion</a>
                     </li>
                 {%endif%}
 

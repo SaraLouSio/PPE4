@@ -24,11 +24,6 @@ class User implements UserInterface, \Serializable{
     private $password;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean", nullable=false)
-     */
-    private $isActive;
-
-    /**
      * @ORM\Column(name="role", type="string", length=255, nullable=false)
      */
     private $role;
@@ -50,9 +45,6 @@ class User implements UserInterface, \Serializable{
         return $this->password;
     }
 
-    function getIsActive() {
-        return $this->isActive;
-    }
 
     function getRole() {
         return $this->role;
@@ -68,10 +60,6 @@ class User implements UserInterface, \Serializable{
 
     public function setPassword(String $password) {
         $this->password = password_hash($password, PASSWORD_BCRYPT, array("cost" => 13));
-    }
-
-    function setIsActive($isActive) {
-        $this->isActive = $isActive;
     }
 
     function setRole($role) {
