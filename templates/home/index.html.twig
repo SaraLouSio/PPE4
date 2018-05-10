@@ -44,7 +44,7 @@
                         <div class="row">
                             {% for produit in produits %}
                                 {% if produit.getProStock > 0 %}
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
                                             <a href="{{ path('produit', { 'id': produit.getProId }) }}" >
                                                 <img class="card-img-top" height="250"  src="{{produit.getProImage}}" alt="Card image cap">
@@ -69,11 +69,11 @@
 
 
 {% endblock %}
-{%block footer %}
+{#{%block footer %}
     <footer style="margin-top: 100px;">
         <div class="text-center">
             <p>Contact : sara.louafi.66@gmail.com</p>
             <p>Copyright @ 2018</p>
         </div>
     </footer>
-{% endblock %}
+{% endblock %}#}
