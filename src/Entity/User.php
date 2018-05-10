@@ -45,7 +45,6 @@ class User implements UserInterface, \Serializable{
         return $this->password;
     }
 
-
     function getRole() {
         return $this->role;
     }

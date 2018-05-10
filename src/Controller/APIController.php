@@ -14,6 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\User;
 
 /**
  * Description of APiController
@@ -23,6 +25,7 @@ use Symfony\Component\HttpFoundation\Request;
 class APIController extends AbstractController {
     //put your code here
 
+    
     /**
      * 
      * @Route ("/apiGet/produit/{id}",name="getProduitById")
@@ -37,7 +40,7 @@ class APIController extends AbstractController {
         $response->headers->set('Ok', 'oui');
         return $response;
     }
-    
+
     /**
      * 
      * @Route ("/apiGet/produits/all",name="getProduits")
@@ -63,6 +66,49 @@ class APIController extends AbstractController {
         $response->headers->set('content-type', 'application/json');
         $response->headers->set('Ok', 'oui');
         return $response;
+    }
+
+    /**
+     * 
+     * @Route ("/Api/Connexion",name="apiConnexion")
+     */
+    public function apiConnexion(Request $request, EntityManagerInterface $em) {
+        $serializer = $this->get('serializer');
+        $username = $request->get('username');
+        $password = $request->get('password');
+        //$password = password_hash($password, PASSWORD_BCRYPT, array("cost" => 13));
+        $user = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findOneBy([
+            'userName' => $username,
+        ]);
+
+
+        //on cherche l'utilisateur dans la base de données
+        if ($user) {
+//        if ($em->getRepository(User::class)->findBy(array('userName' => $username, 'password' => $password))) {
+//            $user = $em->getRepository(User::class)->findOneBy(array('userName' => $username, 'password' => $password));
+            //$data = $serializer->serialize($user, 'json');
+            $hash = $user->getPassword();
+            $passTest = password_verify($password, $hash);
+            if ($passTest) {
+                $data = json_encode(array("id" => $user->getUserName()));
+                $response = new Response($data);
+                $response->headers->set('Content-Type', 'application/text; charset=utf-8');
+                $response->headers->set('Ok', 'oui');
+                return $response;
+            } else {
+                $response = new JsonResponse((array("erreur" => "identifiant ou mot de passe invalide !")));
+                $response->headers->set('Content-Type', 'application/json');
+                $response->headers->set('Non', 'non');
+                return $response;
+            }
+        } else {
+            $response = new JsonResponse((array("erreur" => "identifiant ou mot de passe invalide !")));
+            $response->headers->set('Content-Type', 'application/json');
+            $response->headers->set('Non', 'non');
+            return $response;
+        }
     }
 
     /**
