@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Commandes;
 use App\Entity\Contenu;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 /**
  * Description of PdfController
  *

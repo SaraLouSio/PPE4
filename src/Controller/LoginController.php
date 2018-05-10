@@ -57,7 +57,7 @@ class LoginController extends AbstractController {
         } else {
             $message = null;
         }
-        return $this->render('login/Enregistrer.html.twig', array('message' => $message, 'succes' => $succes));
+        return $this->render('login/enregistrer.html.twig', array('message' => $message, 'succes' => $succes));
     }
 
     /**

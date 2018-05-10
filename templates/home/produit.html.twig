@@ -14,7 +14,7 @@
                 <h3>{{produit.getProPrix}} € </h3>
                 <h4>{{produit.getProStock}} encore en stock </h4>
                 <br/>
-                <h4>{{produit.getProResume}}</h4>
+                <h5>{{produit.getProResume}}</h5>
                 <br>
                 <a class="btn btn-dark" href="{{ path('ajoutPanierFromProduit', { 'id': produit.getProId }) }}" >
                     <i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
