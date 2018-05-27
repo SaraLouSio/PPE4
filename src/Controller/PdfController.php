@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Commandes;
 use App\Entity\Contenu;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 /**
  * Description of PdfController
  *
@@ -90,8 +91,20 @@ class PdfController extends AbstractController {
         }
         $contenuHtml = $contenuHtml . "<br/> <p style='text-align: right;' >Total : " . $total . "</p>";
         $contenuHtml = $contenuHtml . "</html>";
+
+        //define("DOMPDF_TEMP_DIR", "/home/s.l/web/act1louafisara/public_html:/home/s.l/tmp");
+
+        //require_once(__DIR__.'third_party/dompdf/dompdf_config.inc.php');
+
+        //$pdfroot  = dirname(dirname(__FILE__));
+        //$pdfroot .= '/third_party/pdf/';
+        $pdfroot='/home/s.l/web/act1louafisara/public_html:/home/s.l/tmp';
+        
         // On  crée une instance de Dompdf
-        $dompdf = new Dompdf();
+       // $dompdf = new Dompdf([ 'logOutputFile' => '/home/s.l/web/act1louafisara/public_html:/home/s.l/tmp']);
+         $dompdf = new Dompdf([ 'logOutputFile' => '/home/s.l/tmp/log.htm']); 
+         $pdf_string =   $dompdf->output();
+         //file_put_contents($pdfroot, $pdf_string ); 
         //  On  ajoute le texte à afficher
         $dompdf->loadHtml($contenuHtml);
         // On fait générer le pdf  à Dompdf ...
