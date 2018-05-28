@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\User;
 use App\Entity\Panier;
+use App\Entity\Commandes;
+use App\Entity\Contenu;
 
 /**
  * Description of APiController
@@ -231,7 +233,7 @@ class APIController extends AbstractController {
 
         $sql = "DELETE FROM `panier` WHERE user_id = :id";
         $stmt = $em->getConnection()->prepare($sql);
-        $stmt->execute(['id' => $actuUser]);
+        $stmt->execute(['id' => $idUser]);
 
 
         $response = new JsonResponse((array("succes" => "Panier validé")));
@@ -262,24 +264,18 @@ class APIController extends AbstractController {
     }
 
     /**
-     * @route("/apiMoinsPanier/{id}",name="apiMoinsPanier")
+     * @route("/apiMoinsPanier/{idPanier}",name="apiMoinsPanier")
      * @return Response
      */
-    public function apiMoinsPanier($id, EntityManagerInterface $em) {
+    public function apiMoinsPanier($idPanier, EntityManagerInterface $em) {
+        $panier = $em->getRepository(Panier::class)->findOneByPanId($idPanier);
 
-        $actuUser = $this->getUser()->getUsername();
-        $panier = $this->getDoctrine()
-                ->getRepository(Panier::class)
-                ->findOneBy([
-            'userId' => $actuUser,
-            'proId' => $id
-        ]);
 
         $actuQte = $panier->getPanQuantite();
         $panier->setPanQuantite($actuQte - 1);
         $em->persist($panier);
         $em->flush();
-        
+
         $response = new JsonResponse((array("succes" => "ok")));
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Non', 'non');
@@ -287,27 +283,53 @@ class APIController extends AbstractController {
     }
 
     /**
-     * @route("/apiPlusPanier/{id}",name="apiPlusPanier")
+     * @route("/apiPlusPanier/{idPanier}",name="apiPlusPanier")
      * @return Response
      */
-    public function apiPlusPanier($id, EntityManagerInterface $em) {
+    public function apiPlusPanier($idPanier, EntityManagerInterface $em) {
+        $panier = $em->getRepository(Panier::class)->findOneByPanId($idPanier);
 
-        $actuUser = $this->getUser()->getUsername();
-        $panier = $this->getDoctrine()
-                ->getRepository(Panier::class)
-                ->findOneBy([
-            'userId' => $actuUser,
-            'proId' => $id
-        ]);
 
         $actuQte = $panier->getPanQuantite();
         $panier->setPanQuantite($actuQte + 1);
         $em->persist($panier);
         $em->flush();
-       
+
         $response = new JsonResponse((array("succes" => "ok")));
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Non', 'non');
+        return $response;
+    }
+    
+      /**
+     * 
+     * @Route ("/apiGetCommandes/{idUser}",name="apiGetCommandes")
+     */
+    public function apiGetCommandes($idUser,EntityManagerInterface $em) {
+        $produits = $em->getRepository(Commandes::class)->findByUserId($idUser);
+        $serializer = $this->get('serializer');
+        $data = $serializer->serialize($produits, 'json');
+        $response = new Response($data);
+        $response->headers->set('content-type', 'application/json');
+        $response->headers->set('Ok', 'oui');
+        return $response;
+    }
+    
+      /**
+     * @Route ("/apiGetCommande/{idCommande}",name="apiGetCommande")
+     * @return Response
+     */
+    public function apiGetCommande($idCommande,EntityManagerInterface $em) {
+        $contenu = $this->getDoctrine()
+                ->getRepository(Contenu::class)
+                ->findBy([
+            'idCommande' => $idCommande
+        ]);
+           $serializer = $this->get('serializer');
+        $data = $serializer->serialize($contenu, 'json');
+        $response = new Response($data);
+        $response->headers->set('content-type', 'application/json');
+        $response->headers->set('Ok', 'oui');
         return $response;
     }
 
