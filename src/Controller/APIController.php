@@ -222,11 +222,14 @@ class APIController extends AbstractController {
         $em->flush();
 
         foreach ($panier as $pan) {
+            $produit = $em->getRepository(Produits::class)->findOneByProId($pan->getProId());
+            $stock = $produit->getProStock();
+            $produit->setProStock($stock-($pan->getPanQuantite()));
             $contenuCommande = new Contenu();
-            $contenuCommande->setIdCommande($commande);
-            $contenuCommande->setIdProduit($pan->getProId());
+            $contenuCommande->setComId($commande);
+            $contenuCommande->setProId($pan->getProId());
             $contenuCommande->setContenuPrix($pan->getProId()->getProPrix());
-            $contenuCommande->setQuantite($pan->getPanQuantite());
+            $contenuCommande->setContenuQuantite($pan->getPanQuantite());
             $em->persist($contenuCommande);
             $em->flush();
         }

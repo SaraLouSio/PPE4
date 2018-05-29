@@ -17,39 +17,48 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class='nav-item'>
+                    <a class='nav-link' href="http://act2louafisara.cnadal.fr/">Application</a>
+                </li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         {#        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
                               </li>
                               <li class="nav-item">#}
                         <a class="nav-link" href="{{ path('admin') }}">Admin</a>
                     </li>
-                {% endif %}
-                {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Compte
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('compte')}}" > <i class="far fa-user"></i> Compte</a>
-                            <a class="dropdown-item" href="{{ path('panier')}}" > <i class="fas fa-shopping-basket"></i> Panier</a>
-                            <a class="dropdown-item" href="{{ path('commandes')}}"><i class="fas fa-shopping-cart"></i>Commandes</a>
-                            <a class="dropdown-item" href="#"> <i class="far fa-heart"></i> Favoris</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
-                        </div>
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="{{path('logout')}}">Déconnexion</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link disabled' >Bonjour {{app.user.username}}</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href="http://act2louafisara.cnadal.fr/">Application</a>
-                    </li>
-                {%else%}
+                {% else %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Compte
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ path('compte')}}" > <i class="far fa-user"></i> Compte</a>
+                                <a class="dropdown-item" href="{{ path('panier')}}" > <i class="fas fa-shopping-basket"></i> Panier</a>
+                                <a class="dropdown-item" href="{{ path('commandes')}}"><i class="fas fa-shopping-cart"></i>Commandes</a>
+                                <a class="dropdown-item" href="#"> <i class="far fa-heart"></i> Favoris</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
+                            </div>
+                        </li>
 
-                    <li><a class="nav-link" href="{{ path('login') }}">Connexion</a>
-                    </li>
-                {%endif%}
+                        <li class='nav-item'>
+                            <a class='nav-link disabled' >Bonjour {{app.user.username}}</a>
+                        </li>
+
+                    {%else%}
+
+                        <li><a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                        </li>
+
+                    {%endif%} 
+                {% endif %}
+
+
 
             </ul>
             {#<form class="form-inline my-2 my-lg-0">

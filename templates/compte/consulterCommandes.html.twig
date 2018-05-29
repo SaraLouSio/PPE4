@@ -25,23 +25,23 @@
                             {% set total = 0 %}
                             {% for cont in contenu %}
  
-                                {% if cont.getIdCommande.getComId == com.getComId %}
-                                    {% set comId = cont.getIdCommande.getComId %}
-                                    {% set total = total + cont.getQuantite*cont.getContenuPrix%}
+                                {% if cont.getComId.getComId == com.getComId %}
+                                    {% set comId = cont.getComId.getComId %}
+                                    {% set total = total + cont.getContenuQuantite*cont.getContenuPrix%}
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ path('produit', { 'id': cont.getIdProduit.getProId }) }}" class="btn-transparent">
-                                                {{cont.getIdProduit}}
+                                            <a href="{{ path('produit', { 'id': cont.getProId.getProId }) }}" class="btn-transparent">
+                                                {{cont.getProId}}
                                             </a>
                                         </th>
                                         <td>
-                                            {{cont.getQuantite}}
+                                            {{cont.getContenuQuantite}}
                                         </td>
                                         <td>
                                             {{cont.getContenuPrix}}
                                         </td>
                                         <td>
-                                            {{cont.getQuantite*cont.getContenuPrix}}
+                                            {{cont.getContenuQuantite*cont.getContenuPrix}}
                                         </td>
                                     </tr>
                                 {% endif %}

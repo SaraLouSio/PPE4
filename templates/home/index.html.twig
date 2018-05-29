@@ -10,7 +10,7 @@
      </div>  #} 
     <div class='background-books'>
 
-        <div class="container"  >
+        <div class="container" >
             <h1 class="center text-center font-fam-brush" style="min-height: 250px; font-size: 150px;color: #ad8c71"><i>Book Store</i></h1>
         </div>
     </div>
@@ -18,10 +18,16 @@
 
     <div class="container-fluid" >
         <div class="row">
-            <div class="col-sm-3" style="margin-top: 75px;">
+            <div class="col-sm-3" style="margin-top: 130px;">
                 <div class="container border-custom-little font-fam-courrier">
                     <div class='row'>
                         <div>
+                            <h4>
+                                <a href="{{ path('home') }}" 
+                                   class="btn-transparent">
+                                    Toutes catégories
+                                </a>
+                            </h4>
                             {% for cat in categories%}
                                 <h4>
                                     <a href="{{ path('home', { 'categorie': cat.getCatLibelle }) }}" 
@@ -40,20 +46,22 @@
 
                     <h1 class="title" >{{page}}</h1>
                     <hr>
-                    <div class="container-fluid">
+                    <div class="container-fluid border-custom-little ">
                         <div class="row">
                             {% for produit in produits %}
                                 {% if produit.getProStock > 0 %}
-                                    <div class="col-sm-4">
-                                        <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+                                    <div class="col-sm-3">
+                                        <div class="card text-white mb-2" style="max-width: 15rem;background-color: rgba(0, 0, 0, 0)">
                                             <a href="{{ path('produit', { 'id': produit.getProId }) }}" >
-                                                <img class="card-img-top" height="250"  src="{{produit.getProImage}}" alt="Card image cap">
+                                                <img class="card-img-top" height="250" style="border-radius: 20px 20px 0% 0% ;" src="{{produit.getProImage}}" alt="Card image cap">
                                                 <a/>
-                                                <div class="card-body">
+                                                <div class="card-body " style="border: 1px; border-style: solid;border-radius: 0% 0% 20px 20px;">
                                                     <p class="card-text">{{produit.getProNom}}</p>
-                                                    <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-secondary">Infos</a>
-                                                    <a class="btn btn-dark" href="{{ path('ajoutPanierFromHome', { 'id': produit.getProId }) }}" >
-                                                        <i class="fas fa-shopping-basket"></i></a>
+                                                    <a href="{{ path('produit', { 'id': produit.getProId }) }}" class="btn btn-brown-border">Infos</a>
+                                                    {% if not is_granted('ROLE_ADMIN') %}
+                                                        <a class="btn btn-brown-border" href="{{ path('ajoutPanierFromHome', { 'id': produit.getProId }) }}" >
+                                                            <i class="fas fa-shopping-basket"></i></a>
+                                                        {% endif %}
                                                 </div>
                                         </div>
                                     </div>

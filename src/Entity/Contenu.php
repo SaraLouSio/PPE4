@@ -23,7 +23,7 @@ class Contenu {
      *   @ORM\JoinColumn(name="com_id", referencedColumnName="com_id")
      * })
      */
-    private $idCommande;
+    private $comId;
 
     /**
      * @var Produits
@@ -32,12 +32,12 @@ class Contenu {
      *   @ORM\JoinColumn(name="pro_id", referencedColumnName="pro_id")
      * })
      */
-    private $idProduit;
+    private $proId;
 
     /**
      * @ORM\Column(name="contenu_quantite", type="integer")
      */
-    private $quantite;
+    private $contenuQuantite;
     
     /**
      * @ORM\Column(name="contenu_prix", type="integer")
@@ -51,42 +51,39 @@ class Contenu {
     function getContenuId() {
         return $this->contenuId;
     }
-
-    function getIdCommande() {
-        return $this->idCommande;
-    }
-
-    function getIdProduit() {
-        return $this->idProduit;
-    }
-
-    function getQuantite() {
-        return $this->quantite;
-    }
-
-    function setContenuId($contenuId) {
-        $this->contenuId = $contenuId;
-    }
-
-    function setIdCommande($idCommande) {
-        $this->idCommande = $idCommande;
-    }
-
-    function setIdProduit($idProduit) {
-        $this->idProduit = $idProduit;
-    }
-
-    function setQuantite($quantite) {
-        $this->quantite = $quantite;
-    }
     
+    function getComId(){
+        return $this->comId;
+    }
+
+    function getProId(){
+        return $this->proId;
+    }
+
+    function getContenuQuantite() {
+        return $this->contenuQuantite;
+    }
+
     function getContenuPrix() {
         return $this->contenuPrix;
+    }
+
+    function setComId($comId) {
+        $this->comId = $comId;
+    }
+
+    function setProId($proId) {
+        $this->proId = $proId;
+    }
+
+    function setContenuQuantite($contenuQuantite) {
+        $this->contenuQuantite = $contenuQuantite;
     }
 
     function setContenuPrix($contenuPrix) {
         $this->contenuPrix = $contenuPrix;
     }
+
 
 
 

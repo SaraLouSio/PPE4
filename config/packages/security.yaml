@@ -51,6 +51,7 @@ security:
         
     access_control: #controle d'acces
     - { path: ^/perso, roles: ROLE_ADMIN}
+    - { path: ^/admin, roles: ROLE_ADMIN}
     - { path: ^/visiteur, roles: ROLE_USER}
 
     #~{path: ^/, roles: ROLE_ADMIN}

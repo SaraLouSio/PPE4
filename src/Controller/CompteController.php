@@ -86,7 +86,7 @@ class CompteController extends AbstractController {
         $contenu = $this->getDoctrine()
                 ->getRepository(Contenu::class)
                 ->findBy([
-            'idCommande' => $IdCommandes
+            'comId' => $IdCommandes
         ]);
         return $this->render('compte/consulterCommandes.html.twig', [
                     'commandes' => $commandes,

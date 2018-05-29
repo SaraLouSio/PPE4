@@ -17,16 +17,15 @@
                 <div class="container border-custom-little font-fam-courrier">
                     <div class='row'>
                         <div>
-                            <h3>
+                            <h4>
                                 <a 
                                     {#href="{{ path('home', { 'categorie': cat.getCatLibelle }) }}" #}
                                     href="{{ path('compte')}}"
                                     class="btn-transparent">
                                     Accueil
                                 </a>
-                            </h3>
-                        </div>
-                        <div>
+                            </h4>
+                        
                             <h4>
                                 <a 
                                     href="{{ path('changerMdp') }}" 
@@ -34,8 +33,7 @@
                                     Changer mot de passe
                                 </a>
                             </h4>
-                        </div>
-                        <div>
+                        
                             <h4>
                                 <a 
                                     href="{{ path('commandes') }}" 

@@ -34,7 +34,7 @@ class PdfController extends AbstractController {
         $contenu = $this->getDoctrine()
                 ->getRepository(Contenu::class)
                 ->findBy([
-            'idCommande' => $idCommande
+            'comId' => $idCommande
         ]);
 
         $dateActu = date('d-m-Y');
@@ -63,21 +63,21 @@ class PdfController extends AbstractController {
                         </tr>
                     </thead> ";
         foreach ($contenu as $cont) {
-            $total = $total + ($cont->getContenuPrix() * $cont->getQuantite() );
+            $total = $total + ($cont->getContenuPrix() * $cont->getContenuQuantite() );
             $contenuHtml = $contenuHtml .
                     " <tbody> 
                                 <tr> 
                                     <td style ='width: 300px;'>
-                                    " . $cont->getIdProduit()->getProNom() . "
+                                    " . $cont->getProId()->getProNom() . "
                                     </td>
                                     <td style ='width: 100px;'>
                                     " . $cont->getContenuPrix() . "
                                     </td>
                                     <td style ='width: 100px;'>
-                                    " . $cont->getQuantite() . "
+                                    " . $cont->getContenuQuantite() . "
                                     </td>
                                     <td style ='width: 100px;'>
-                                    " . $cont->getContenuPrix() * $cont->getQuantite() . "
+                                    " . $cont->getContenuPrix() * $cont->getContenuQuantite() . "
                                     </td>
                                 </tr>
                            </tbody>";

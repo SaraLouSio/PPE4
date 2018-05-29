@@ -16,9 +16,12 @@
                 <br/>
                 <h5>{{produit.getProResume}}</h5>
                 <br>
-                <a class="btn btn-dark" href="{{ path('ajoutPanierFromProduit', { 'id': produit.getProId }) }}" >
-                    <i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
-                <a class="btn btn-danger"><i class="far fa-heart"></i> Ajouter aux favoris</a>
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-dark" href="{{ path('ajoutPanierFromProduit', { 'id': produit.getProId }) }}" >
+                        <i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
+                    <a class="btn btn-danger"><i class="far fa-heart"></i> Ajouter aux favoris</a>
+                {% endif %}
+
                 {#                <a class="btn btn-danger"><i class="fas fa-heart"></i> Ajouter aux favoris</a>#}
 
             </div>
