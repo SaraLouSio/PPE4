@@ -50,7 +50,7 @@
                         <div class="row">
                             {% for produit in produits %}
                                 {% if produit.getProStock > 0 %}
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4 col-lg-3">
                                         <div class="card text-white mb-2" style="max-width: 15rem;background-color: rgba(0, 0, 0, 0)">
                                             <a href="{{ path('produit', { 'id': produit.getProId }) }}" >
                                                 <img class="card-img-top" height="250" style="border-radius: 20px 20px 0% 0% ;" src="{{produit.getProImage}}" alt="Card image cap">
