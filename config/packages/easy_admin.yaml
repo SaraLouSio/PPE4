@@ -17,13 +17,13 @@ easy_admin:
             - { entity: 'Categorie', icon: 'list-ol'}
             - { entity: 'Panier', icon: 'shopping-basket'}
             - { entity: 'Commandes', icon: 'truck'}
-            - { entity: 'Contenu', icon: 'box-open'}
+            - { entity: 'Contenu', icon: 'cubes'}
             
             - label: 'Liens éditeur'
             - {label: Symfony,url: "https://symfony.com/", target: "_blank", icon: "thumbs-o-up"}
             
             - label: 'Liens internes'
-            - {label: 'Notre site',route: "home", icon: "Calendar"}
+            - {label: 'Bookstore',route: "home", icon: "mouse-pointer"}
             
     entities:
            #Entity class name     

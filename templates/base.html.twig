@@ -21,14 +21,15 @@
                     <a class='nav-link' href="http://act2louafisara.cnadal.fr/">Application</a>
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        {#        <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
-                              </li>
-                              <li class="nav-item">#}
-                        <a class="nav-link" href="{{ path('admin') }}">Admin</a>
-                    </li>
-                    <li class="nav-item"> 
-                        <a class="nav-link" href="{{path('logout')}}">Déconnexion</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{path('tableauDeBord')}}">Tableau de bord</a>
+                            <a class="dropdown-item" href="{{ path('admin') }}">Easy admin</a>
+                            <a class="dropdown-item" href="{{path('logout')}}">Déconnexion</a>
+                        </div>
                     </li>
                 {% else %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY')%}
